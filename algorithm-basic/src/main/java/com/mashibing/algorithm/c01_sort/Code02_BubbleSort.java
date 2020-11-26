@@ -1,6 +1,4 @@
-package com.mashibing.algorithm.sort;
-
-import java.util.Arrays;
+package com.mashibing.algorithm.c01_sort;
 
 /***********************
  * Description: 冒泡排序 <BR>
@@ -11,9 +9,28 @@ import java.util.Arrays;
 public class Code02_BubbleSort {
 
     public static void main(String[] args) {
-        int[] arr = {1, 8, 5, 5, 10, 3, 13};
-        bubbleSort(arr, false);
-        System.out.println(Arrays.toString(arr));
+
+        int testTime = 500_000;
+        int maxSize = 100;
+        int maxValue = 100;
+
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] randomArray = ArraySortLogDetector.generateRandomArray(maxSize, maxValue);
+            int[] testArray = ArraySortLogDetector.copyArray(randomArray);
+
+            ArraySortLogDetector.comparator(randomArray);
+            bubbleSort(testArray,true);
+
+            if(!ArraySortLogDetector.isEqual(randomArray, testArray)) {
+                succeed = false;
+            }
+        }
+
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+//        int[] arr = {1, 8, 5, 5, 10, 3, 13};
+//        bubbleSort(arr, false);
+//        System.out.println(Arrays.toString(arr));
     }
 
     public static void bubbleSort(int[] arr, boolean isOrder) {

@@ -1,6 +1,4 @@
-package com.mashibing.algorithm.sort;
-
-import java.util.Arrays;
+package com.mashibing.algorithm.c01_sort;
 
 /***********************
  * Description: 插入排序 <BR>
@@ -10,10 +8,30 @@ import java.util.Arrays;
  ***********************/
 public class Code03_InsertSort {
 
+
     public static void main(String[] args) {
-        int[] arr = {1, 8, 5, 5, 10, 3, 2};
+
+        int testTime = 500_000;
+        int maxSize = 100;
+        int maxValue = 100;
+
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] randomArray = ArraySortLogDetector.generateRandomArray(maxSize, maxValue);
+            int[] testArray = ArraySortLogDetector.copyArray(randomArray);
+
+            ArraySortLogDetector.comparator(randomArray);
+            insertSort(testArray);
+
+            if(!ArraySortLogDetector.isEqual(randomArray, testArray)) {
+                succeed = false;
+            }
+        }
+
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+/*        int[] arr = {1, 8, 5, 5, 10, 3, 2};
         insertSort(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr));*/
     }
 
     public static void insertSort(int[] arr) {
@@ -32,7 +50,9 @@ public class Code03_InsertSort {
         }
     }
 
+    //lPos和hPos是同一个位置的话,会报错
     private static void swap(int[] arr, int lPos, int hPos) {
+        //异或
         arr[lPos] = arr[lPos] ^ arr[hPos];
         arr[hPos] = arr[lPos] ^ arr[hPos];
         arr[lPos] = arr[lPos] ^ arr[hPos];

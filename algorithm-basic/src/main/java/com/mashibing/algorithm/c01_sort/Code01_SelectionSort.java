@@ -1,7 +1,4 @@
-package com.mashibing.algorithm.sort;
-
-import java.util.Arrays;
-import java.util.Comparator;
+package com.mashibing.algorithm.c01_sort;
 
 /***********************
  * Description: 选择排序 <BR>
@@ -12,29 +9,39 @@ import java.util.Comparator;
 public class Code01_SelectionSort {
 
     public static void main(String[] args) {
-        Integer[] arr = {1, 8, 5, 5};
-/*        Arrays.sort(arr, (o1,o2)->{
-            if (o1 > o2) {
-                return 1;
+
+        int testTime = 500_000;
+        int maxSize = 100;
+        int maxValue = 100;
+
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] randomArray = ArraySortLogDetector.generateRandomArray(maxSize, maxValue);
+            int[] testArray = ArraySortLogDetector.copyArray(randomArray);
+
+            ArraySortLogDetector.comparator(randomArray);
+            selectOrderSort(testArray);
+
+            if(!ArraySortLogDetector.isEqual(randomArray, testArray)) {
+                succeed = false;
             }
-            return -1;
-        });*/
-//        selectOrderSort(arr);
-//        selectNoOrderSort(arr);
-        System.out.println(Arrays.toString(arr));
+        }
+
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+
     }
 
     //正序
-    public static void selectOrderSort(Integer[] arr) {
+    public static void selectOrderSort(int[] arr) {
         selectSort(arr,true);
     }
 
     //倒序
-    public static void selectNoOrderSort(Integer[] arr) {
+    public static void selectNoOrderSort(int[] arr) {
         selectSort(arr,false);
     }
 
-    public static void selectSort(Integer[] arr, boolean isOrder) {
+    public static void selectSort(int[] arr, boolean isOrder) {
         if (arr == null || arr.length <= 1) {
             return;
         }
@@ -55,7 +62,7 @@ public class Code01_SelectionSort {
     }
 
     //交换位置
-    private static void swap(Integer[] arr, int currPos, int tPos) {
+    private static void swap(int[] arr, int currPos, int tPos) {
         if (currPos == tPos) {
             return;
         }
