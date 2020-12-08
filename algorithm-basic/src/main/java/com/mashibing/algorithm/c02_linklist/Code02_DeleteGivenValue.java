@@ -47,6 +47,8 @@ public class Code02_DeleteGivenValue {
         head.next = link1;
         Node link2 = new Node(3);
         link1.next = link2;
+        Node link3 = new Node(1);
+        link2.next=link3;
 
         final Node node = deleteGivenValue(head, 1);
         System.in.read();
