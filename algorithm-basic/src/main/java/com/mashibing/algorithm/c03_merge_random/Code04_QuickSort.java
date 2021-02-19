@@ -10,13 +10,14 @@ import java.util.Arrays;
  ***********************/
 public class Code04_QuickSort {
     public static void main(String[] args) {
-        int[] array = {3, 46, 6, 5, 5};
+//        int[] array = {3, 46, 6, 5, 5};
 //        System.out.println(partition(array, 0, array.length - 1));
 //        System.out.println(Arrays.toString(nearNeitherFlag(array, 0, array.length - 1)));
 //        quickSort1(array);
 //        quickSort2(array);
-        quickSort3(array);
-        System.out.println(Arrays.toString(array));
+//        quickSort3(array);
+//        System.out.println(Arrays.toString(array));
+
     }
 
     public static void quickSort1(int array[]) {
